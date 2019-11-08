@@ -42,7 +42,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 	
 	
 	func authenticateLocalPlayer() {
-		var localPlayer = GKLocalPlayer.local
+		let localPlayer = GKLocalPlayer.local
 		localPlayer.authenticateHandler = {(viewController, error) -> Void in
 			if (viewController != nil) {
 				self.present(viewController!, animated: true, completion: nil)
@@ -55,7 +55,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 						} else {
 							self.leaderboardIdentifier = leaderboardIdentifier
 						}
-						} as! (String?, Error?) -> Void)
+						} as? (String?, Error?) -> Void)
 				} else {
 					self.gameCenterEnabled = false
 				}
@@ -82,7 +82,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 	}
 
 	// MARK: GKGameCenterControllerDelegate Method
-	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController!) {
+	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
 		gameCenterViewController.dismiss(animated: true, completion: nil)
 	}
 }
