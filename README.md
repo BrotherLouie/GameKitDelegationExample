@@ -1,3 +1,3 @@
 # GameKitDelegationExample
 
-Verified that this repository's code works in XCode 6.3 with Swift 1.2
+Verified that this repository's code works in XCode 11.2 with Swift 5
