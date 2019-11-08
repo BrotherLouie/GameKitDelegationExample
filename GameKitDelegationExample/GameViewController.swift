@@ -7,7 +7,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+		if let scene = GameScene.init(fileNamed: "GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = true
@@ -17,7 +17,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
+			scene.scaleMode = .aspectFill
 			scene.gameSceneDelegate = self
 			
             skView.presentScene(scene)
@@ -32,25 +32,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 		authenticateLocalPlayer()
 		showLeaderboard()
 	}
-	
-    override func shouldAutorotate() -> Bool {
-        return true
-    }
 
-    override func supportedInterfaceOrientations() -> Int {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-        } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    override func prefersStatusBarHidden() -> Bool {
+    func prefersStatusBarHidden() -> Bool {
         return true
     }
 
@@ -59,27 +42,27 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 	
 	
 	func authenticateLocalPlayer() {
-		var localPlayer = GKLocalPlayer.localPlayer()
+		var localPlayer = GKLocalPlayer.local
 		localPlayer.authenticateHandler = {(viewController, error) -> Void in
 			if (viewController != nil) {
-				self.presentViewController(viewController, animated: true, completion: nil)
+				self.present(viewController!, animated: true, completion: nil)
 			} else {
-				if (GKLocalPlayer().authenticated) {
+				if (GKLocalPlayer().isAuthenticated) {
 					self.gameCenterEnabled = true
-					localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
+					localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifier : String!, error : NSError!) -> Void in
 						if error != nil {
-							println(error.localizedDescription)
+							print(error.localizedDescription)
 						} else {
 							self.leaderboardIdentifier = leaderboardIdentifier
 						}
-					})
+						} as! (String?, Error?) -> Void)
 				} else {
 					self.gameCenterEnabled = false
 				}
 			}
 		}
-		println(localPlayer)
-		println(leaderboardIdentifier)
+		print(localPlayer)
+		print(leaderboardIdentifier)
 	}
 	
 	func showLeaderboard() {
@@ -88,18 +71,18 @@ class GameViewController: UIViewController, GameSceneDelegate, GKGameCenterContr
 			let gameCenterViewController = GKGameCenterViewController()
 			gameCenterViewController.gameCenterDelegate = self
 			
-			gameCenterViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+			gameCenterViewController.viewState = GKGameCenterViewControllerState.leaderboards
 			gameCenterViewController.leaderboardIdentifier = self.leaderboardIdentifier
 			
-			self.presentViewController(gameCenterViewController, animated: true, completion: nil)
+			self.present(gameCenterViewController, animated: true, completion: nil)
 		} else {
 			// Tell the user something useful about the fact that game center isn't enabled on their device
 		}
 		
 	}
-	
+
 	// MARK: GKGameCenterControllerDelegate Method
-	func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
-		gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController!) {
+		gameCenterViewController.dismiss(animated: true, completion: nil)
 	}
 }

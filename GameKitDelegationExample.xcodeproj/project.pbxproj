@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		F215488119B241DA007C8DD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F215487F19B241DA007C8DD8 /* Main.storyboard */; };
 		F215488319B241DA007C8DD8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F215488219B241DA007C8DD8 /* Images.xcassets */; };
 		F215488F19B241DA007C8DD8 /* GameKitDelegationExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215488E19B241DA007C8DD8 /* GameKitDelegationExampleTests.swift */; };
-		F215489919B2444B007C8DD8 /* SKNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215489819B2444B007C8DD8 /* SKNodeExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +38,6 @@
 		F215488819B241DA007C8DD8 /* GameKitDelegationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameKitDelegationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F215488D19B241DA007C8DD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F215488E19B241DA007C8DD8 /* GameKitDelegationExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitDelegationExampleTests.swift; sourceTree = "<group>"; };
-		F215489819B2444B007C8DD8 /* SKNodeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNodeExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				F215487719B241DA007C8DD8 /* AppDelegate.swift */,
-				F215489819B2444B007C8DD8 /* SKNodeExtensions.swift */,
 				F215487919B241DA007C8DD8 /* GameScene.sks */,
 				F215487B19B241DA007C8DD8 /* GameScene.swift */,
 				F215487D19B241DA007C8DD8 /* GameViewController.swift */,
@@ -175,10 +172,11 @@
 				};
 			};
 			buildConfigurationList = F215486D19B241DA007C8DD8 /* Build configuration list for PBXProject "GameKitDelegationExample" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -220,7 +218,6 @@
 			files = (
 				F215487C19B241DA007C8DD8 /* GameScene.swift in Sources */,
 				F215487E19B241DA007C8DD8 /* GameViewController.swift in Sources */,
-				F215489919B2444B007C8DD8 /* SKNodeExtensions.swift in Sources */,
 				F215487819B241DA007C8DD8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,8 +337,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GameKitDelegationExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -351,8 +352,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GameKitDelegationExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -369,7 +374,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = GameKitDelegationExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GameKitDelegationExample.app/GameKitDelegationExample";
 			};
@@ -384,7 +393,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = GameKitDelegationExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GameKitDelegationExample.app/GameKitDelegationExample";
 			};
